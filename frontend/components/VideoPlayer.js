@@ -9,10 +9,19 @@ export default function VideoPlayer({ reelData }) {
 
   // Load Instagram embed script
   useEffect(() => {
-    if (reelData.type === 'embed' && window.instgrm) {
+    if (reelData?.type === 'embed' && window.instgrm) {
       window.instgrm.Embeds.process();
     }
   }, [reelData]);
+
+  // Safety check
+  if (!reelData) {
+    return (
+      <div className="card">
+        <p className="text-gray-600">No reel data available</p>
+      </div>
+    );
+  }
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -55,7 +64,7 @@ export default function VideoPlayer({ reelData }) {
           <div>
             <p className="font-semibold text-yellow-800 mb-1">Video May Not Play</p>
             <p className="text-sm text-yellow-700">
-              {reelData.warning || 'Media URLs often expire within minutes or require authentication.'}
+              {reelData?.warning || 'Media URLs often expire within minutes or require authentication.'}
             </p>
           </div>
         </div>

@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      {/* <Header /> */}
 
       {/* Multi-User Mode Banner */}
       <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4">
@@ -33,14 +33,13 @@ export default function Home() {
       </div>
 
       <main className="flex-grow container mx-auto px-4 py-8 max-w-4xl">
-        {/* Educational Disclaimer */}
-        <Disclaimer />
+       
 
         {/* Main Reel Viewer Component */}
         <ReelViewer />
 
         {/* Educational Information Section */}
-        <div className="mt-12 space-y-6">
+        {/* <div className="mt-12 space-y-6">
           <div className="card">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
               📚 Why This Project Exists
@@ -106,7 +105,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
 
       <Footer />
