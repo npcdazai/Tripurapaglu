@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
 import AutoplayReelViewer from './AutoplayReelViewer';
@@ -12,6 +12,7 @@ export default function SharedReelsFeed({ token }) {
   const [error, setError] = useState(null);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [currentReelIndex, setCurrentReelIndex] = useState(0);
+  const reelRefs = useRef([]);
 
   useEffect(() => {
     if (token) {
@@ -29,6 +30,31 @@ export default function SharedReelsFeed({ token }) {
 
     return () => clearInterval(interval);
   }, [autoRefresh, token]);
+
+  // Intersection Observer to detect which reel is in view
+  useEffect(() => {
+    const observers = [];
+
+    reelRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setCurrentReelIndex(index);
+          }
+        },
+        { threshold: 0.6 } // Consider visible when 60% in view
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [reels]);
 
   const fetchReels = async (silent = false) => {
     try {
@@ -121,7 +147,11 @@ export default function SharedReelsFeed({ token }) {
 
       {/* Reels List */}
       {reels.map((reel, index) => (
-        <div key={reel._id} className="space-y-4">
+        <div
+          key={reel._id}
+          className="space-y-4"
+          ref={el => reelRefs.current[index] = el}
+        >
           {/* Reel Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -150,7 +180,7 @@ export default function SharedReelsFeed({ token }) {
           </div>
 
           {/* Reel Content */}
-          <VideoPlayer reelData={reel.reelData} />
+          <AutoplayReelViewer reel={reel} isVisible={index === currentReelIndex} />
 
           {/* Separator */}
           {index < reels.length - 1 && (
