@@ -29,8 +29,8 @@ export default function LoginPage() {
 
       const response = await axios.post(`${API_URL}${endpoint}`, payload);
 
-      if (response.data.success) {
-        // Store token and user data
+      // Store token and user data
+      if (response.data.token && response.data.user) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
@@ -40,10 +40,12 @@ export default function LoginPage() {
         } else {
           router.push('/viewer');
         }
+      } else {
+        setError('Login successful but missing user data');
       }
     } catch (err) {
       console.error('Auth error:', err);
-      setError(err.response?.data?.message || 'Authentication failed');
+      setError(err.response?.data?.error || err.response?.data?.message || 'Authentication failed');
     } finally {
       setLoading(false);
     }
