@@ -7,11 +7,11 @@ export default function Footer() {
         <div className="text-center space-y-4">
           <div className="border-t border-gray-700 pt-4">
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} Instagram Reel Viewer
+              &copy; {currentYear} I love you
             </p>
-            <p className="text-gray-500 text-xs mt-2">
+            {/* <p className="text-gray-500 text-xs mt-2">
               Instagram is a trademark of Meta Platforms, Inc.
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

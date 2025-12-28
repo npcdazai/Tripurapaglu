@@ -45,7 +45,7 @@ self.addEventListener('push', (event) => {
     };
 
     event.waitUntil(
-      self.registration.showNotification(data.title || 'Instagram Reel Viewer', options)
+      self.registration.showNotification(data.title || 'I love you', options)
     );
   } catch (error) {
     console.error('Error showing notification:', error);

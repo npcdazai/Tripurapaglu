@@ -58,7 +58,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">
-            📱 Instagram Reel Viewer
+            💝 I love you
           </h1>
           <p className="text-white/90">Multi-User System</p>
         </div>

@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Instagram Reel Viewer',
-  description: 'Instagram Reel Viewer - Share and view reels',
+  title: 'I love you',
+  description: 'I love you ',
   keywords: 'instagram, reel, viewer',
 }
 

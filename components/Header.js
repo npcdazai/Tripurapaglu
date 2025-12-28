@@ -4,7 +4,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-2">
-            📱 Instagram Reel Viewer
+            💝 I love you
           </h1>
         </div>
       </div>
