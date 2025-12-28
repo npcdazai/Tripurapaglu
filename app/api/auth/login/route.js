@@ -5,6 +5,14 @@ import { generateToken } from '@/lib/middleware/auth';
 
 export async function POST(request) {
   try {
+    // Check if MongoDB is configured
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { error: 'Database not configured. Please add MONGODB_URI to environment variables.' },
+        { status: 500 }
+      );
+    }
+
     await connectDB();
 
     const { username, password } = await request.json();
