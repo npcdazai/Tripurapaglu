@@ -149,11 +149,8 @@ export default function SharedReelsFeed({ token }) {
             </div>
           </div>
 
-          {/* Reel Content - Autoplay Version */}
-          <AutoplayReelViewer
-            reel={reel}
-            isVisible={index === currentReelIndex}
-          />
+          {/* Reel Content */}
+          <VideoPlayer reelData={reel.reelData} />
 
           {/* Separator */}
           {index < reels.length - 1 && (
