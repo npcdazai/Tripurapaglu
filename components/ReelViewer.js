@@ -5,8 +5,7 @@ import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
 import ErrorDisplay from './ErrorDisplay';
 import LoadingSpinner from './LoadingSpinner';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+import { API_URL } from '@/lib/config';
 
 export default function ReelViewer() {
   const [url, setUrl] = useState('');
