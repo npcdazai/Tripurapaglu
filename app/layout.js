@@ -2,8 +2,8 @@ import './globals.css'
 
 export const metadata = {
   title: 'Instagram Reel Viewer',
-  description: 'Educational demonstration of web scraping limitations and challenges',
-  keywords: 'instagram, reel, viewer, educational, web scraping',
+  description: 'Instagram Reel Viewer - Share and view reels',
+  keywords: 'instagram, reel, viewer',
 }
 
 export default function RootLayout({ children }) {

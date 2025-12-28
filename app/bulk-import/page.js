@@ -246,7 +246,6 @@ export default function BulkImportPage() {
             <li>Only import reels you have permission to view</li>
             <li>Private account reels may not work</li>
             <li>Some reels may fail due to Instagram's restrictions</li>
-            <li>This is for educational purposes only</li>
           </ul>
         </div>
       </main>

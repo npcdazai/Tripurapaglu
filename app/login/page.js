@@ -60,7 +60,7 @@ export default function LoginPage() {
           <h1 className="text-4xl font-bold text-white mb-2">
             📱 Instagram Reel Viewer
           </h1>
-          <p className="text-white/90">Educational Project - Multi-User System</p>
+          <p className="text-white/90">Multi-User System</p>
         </div>
 
         {/* Auth Card */}
@@ -198,17 +198,14 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Educational Note */}
+        {/* Back Link */}
         <div className="mt-6 text-center text-white/80 text-sm">
-          <p>⚠️ For educational purposes only</p>
-          <p className="mt-2">
-            <button
-              onClick={() => router.push('/')}
-              className="underline hover:text-white"
-            >
-              ← Back to Single User Mode
-            </button>
-          </p>
+          <button
+            onClick={() => router.push('/')}
+            className="underline hover:text-white"
+          >
+            ← Back to Single User Mode
+          </button>
         </div>
       </div>
     </div>

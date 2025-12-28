@@ -72,13 +72,13 @@ export default function ErrorDisplay({ error }) {
           </div>
         )}
 
-        {/* Educational Note */}
+        {/* Info Note */}
         {error.educationalNote && (
           <div className="info-box">
             <div className="flex items-start gap-2">
               <span className="text-xl">💡</span>
               <div>
-                <p className="font-semibold text-blue-800 mb-1">Educational Note</p>
+                <p className="font-semibold text-blue-800 mb-1">Info</p>
                 <p className="text-sm text-blue-700">
                   {error.educationalNote}
                 </p>
