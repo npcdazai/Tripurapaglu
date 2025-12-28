@@ -33,7 +33,26 @@ export default function Home() {
       </div>
 
       <main className="flex-grow container mx-auto px-4 py-8 max-w-4xl">
-       
+        {/* Bulk Import Feature Banner */}
+        <div className="card bg-gradient-to-r from-blue-50 to-purple-50 border-purple-200 mb-6">
+          <div className="flex items-start gap-4">
+            <div className="text-4xl">📦</div>
+            <div className="flex-grow">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                New! Bulk Import Your Reels
+              </h3>
+              <p className="text-gray-600 mb-3">
+                Import multiple reels at once instead of pasting URLs one by one
+              </p>
+              <button
+                onClick={() => router.push('/bulk-import')}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+              >
+                Try Bulk Import →
+              </button>
+            </div>
+          </div>
+        </div>
 
         {/* Main Reel Viewer Component */}
         <ReelViewer />
