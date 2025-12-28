@@ -4,15 +4,27 @@ import connectDB from '@/lib/utils/db';
 import PushSubscription from '@/lib/models/PushSubscription';
 import User from '@/lib/models/User';
 
-// Configure web-push
-webPush.setVapidDetails(
-  process.env.VAPID_SUBJECT,
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
-);
+// Configure web-push with fallback
+if (process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
+  webPush.setVapidDetails(
+    process.env.VAPID_SUBJECT || 'mailto:noreply@example.com',
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+  );
+}
 
 export async function POST(request) {
   try {
+    // Check if push notifications are configured
+    if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+      console.log('Push notifications not configured - skipping');
+      return NextResponse.json({
+        success: true,
+        message: 'Push notifications not configured',
+        sent: 0
+      });
+    }
+
     await connectDB();
 
     const { userId, title, body, icon, url } = await request.json();
