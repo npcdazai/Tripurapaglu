@@ -38,7 +38,8 @@ export default function LoginPage() {
         if (response.data.user.role === 'sender') {
           router.push('/sender');
         } else {
-          router.push('/viewer');
+          // Redirect viewer to their personalized page
+          router.push(`/${response.data.user.username}`);
         }
       } else {
         setError('Login successful but missing user data');
