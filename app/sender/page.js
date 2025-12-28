@@ -166,47 +166,66 @@ export default function SenderPage() {
           </div>
         )}
 
-        {/* Share Reel Form */}
-        <div className="card mb-8">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">
-            📎 Share New Reel
-          </h2>
+        {/* Share Options */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {/* Single Share */}
+          <div className="card">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">
+              📎 Share Single Reel
+            </h2>
 
-          <form onSubmit={handleShare} className="space-y-4">
-            <div>
-              <input
-                type="text"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://www.instagram.com/reel/ABC123XYZ/"
-                className="input-field"
-                disabled={loading}
-              />
-              <p className="text-sm text-gray-500 mt-2">
-                Paste a public Instagram Reel URL
-              </p>
-            </div>
-
-            {error && (
-              <div className="error-box">
-                <p className="text-sm text-red-700">{error}</p>
+            <form onSubmit={handleShare} className="space-y-4">
+              <div>
+                <input
+                  type="text"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="https://www.instagram.com/reel/ABC123XYZ/"
+                  className="input-field"
+                  disabled={loading}
+                />
+                <p className="text-sm text-gray-500 mt-2">
+                  Paste a public Instagram Reel URL
+                </p>
               </div>
-            )}
 
-            {success && (
-              <div className="success-box">
-                <p className="text-sm text-green-700">{success}</p>
-              </div>
-            )}
+              {error && (
+                <div className="error-box">
+                  <p className="text-sm text-red-700">{error}</p>
+                </div>
+              )}
 
+              {success && (
+                <div className="success-box">
+                  <p className="text-sm text-green-700">{success}</p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading || !url}
+                className="btn-primary w-full"
+              >
+                {loading ? 'Sharing...' : '🚀 Share Reel'}
+              </button>
+            </form>
+          </div>
+
+          {/* Bulk Import */}
+          <div className="card bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">
+              📦 Bulk Import
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Import multiple reels at once instead of pasting URLs one by one
+            </p>
             <button
-              type="submit"
-              disabled={loading || !url}
-              className="btn-primary"
+              onClick={() => router.push('/bulk-import')}
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all w-full"
             >
-              {loading ? 'Sharing...' : '🚀 Share Reel'}
+              📥 Open Bulk Import →
             </button>
-          </form>
+          </div>
         </div>
 
         {/* My Shared Reels */}

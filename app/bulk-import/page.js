@@ -97,10 +97,10 @@ export default function BulkImportPage() {
       <main className="flex-grow container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-6">
           <button
-            onClick={() => router.back()}
+            onClick={() => router.push('/sender')}
             className="text-purple-600 hover:text-purple-700 font-semibold"
           >
-            ← Back
+            ← Back to Sender Dashboard
           </button>
         </div>
 
@@ -108,9 +108,14 @@ export default function BulkImportPage() {
           <h1 className="text-3xl font-bold text-gray-800 mb-4">
             📦 Bulk Reel Import
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 mb-2">
             Import multiple Instagram reels at once by pasting URLs or shortcodes
           </p>
+          <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+            <p className="text-sm text-blue-800">
+              💡 <strong>Sharing to:</strong> tripura_mandavkar (and all viewers)
+            </p>
+          </div>
         </div>
 
         {/* Instructions */}
@@ -230,12 +235,20 @@ export default function BulkImportPage() {
               Reels are being fetched in the background. They will appear in your feed shortly.
             </p>
 
-            <button
-              onClick={() => router.push('/viewer')}
-              className="btn-primary"
-            >
-              View My Reels →
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={() => router.push('/sender')}
+                className="btn-primary flex-1"
+              >
+                ← Back to Dashboard
+              </button>
+              <button
+                onClick={() => router.push('/tripura_mandavkar')}
+                className="bg-gradient-to-r from-pink-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-pink-700 hover:to-purple-700 transition-all flex-1"
+              >
+                View as tripura_mandavkar →
+              </button>
+            </div>
           </div>
         )}
 
