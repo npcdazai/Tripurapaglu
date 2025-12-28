@@ -133,6 +133,23 @@ export async function POST(request) {
         sharedReel.status = 'success';
         await sharedReel.save();
         console.log(`✅ Successfully scraped reel: ${shortcode}`);
+
+        // Send push notification to all viewers
+        try {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/push/send`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title: '🎬 New Reel Shared!',
+              body: `Check out this new reel: ${reelData.title || shortcode}`,
+              icon: '/tripura-profile.png',
+              url: '/tripura_mandavkar'
+            })
+          });
+          console.log('📱 Push notification sent');
+        } catch (notifError) {
+          console.error('Failed to send push notification:', notifError);
+        }
       })
       .catch(async (error) => {
         console.error(`❌ Failed to scrape reel ${shortcode}:`, error.message);

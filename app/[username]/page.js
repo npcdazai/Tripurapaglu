@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import SharedReelsFeed from '@/components/SharedReelsFeed';
+import PushNotificationManager from '@/components/PushNotificationManager';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { API_URL } from '@/lib/config';
@@ -137,6 +138,9 @@ export default function UserPage() {
       <main className="flex-grow container mx-auto px-4 py-8 max-w-4xl">
         <SharedReelsFeed token={token} />
       </main>
+
+      {/* Push Notification Manager */}
+      {token && <PushNotificationManager token={token} />}
 
       <Footer />
     </div>
