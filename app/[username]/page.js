@@ -40,7 +40,7 @@ export default function UserPage() {
         password: password
       });
 
-      if (response.data.success) {
+      if (response.data.token && response.data.user) {
         // Check if user is viewer
         if (response.data.user.role !== 'viewer') {
           setError('This page is only accessible for viewer accounts');
