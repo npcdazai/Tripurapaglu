@@ -47,28 +47,23 @@ export default function VideoPlayer({ reelData }) {
   };
 
   return (
-    <div className="card space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-800">
-          ✅ Reel Data Retrieved
-        </h2>
-        <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-          Success
-        </span>
-      </div>
+    <div className="space-y-4">
+      {/* Removed header - cleaner look */}
 
-      {/* Warning Banner */}
-      <div className="warning-box">
-        <div className="flex items-start gap-2">
-          <span className="text-xl">⚠️</span>
-          <div>
-            <p className="font-semibold text-yellow-800 mb-1">Video May Not Play</p>
-            <p className="text-sm text-yellow-700">
-              {reelData?.warning || 'Media URLs often expire within minutes or require authentication.'}
-            </p>
+      {/* Only show warning for non-embed types */}
+      {reelData.type !== 'embed' && (
+        <div className="warning-box">
+          <div className="flex items-start gap-2">
+            <span className="text-xl">⚠️</span>
+            <div>
+              <p className="font-semibold text-yellow-800 mb-1">Video May Not Play</p>
+              <p className="text-sm text-yellow-700">
+                {reelData?.warning || 'Media URLs often expire within minutes or require authentication.'}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* oEmbed Embed Display with Instagram Widget */}
       {reelData.type === 'embed' && reelData.sourceUrl && (
