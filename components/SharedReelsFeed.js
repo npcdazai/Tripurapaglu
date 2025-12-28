@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
+import AutoplayReelViewer from './AutoplayReelViewer';
 import { API_URL } from '@/lib/config';
 
 export default function SharedReelsFeed({ token }) {
@@ -10,6 +11,7 @@ export default function SharedReelsFeed({ token }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [autoRefresh, setAutoRefresh] = useState(true);
+  const [currentReelIndex, setCurrentReelIndex] = useState(0);
 
   useEffect(() => {
     if (token) {
@@ -147,8 +149,11 @@ export default function SharedReelsFeed({ token }) {
             </div>
           </div>
 
-          {/* Reel Content */}
-          <VideoPlayer reelData={reel.reelData} />
+          {/* Reel Content - Autoplay Version */}
+          <AutoplayReelViewer
+            reel={reel}
+            isVisible={index === currentReelIndex}
+          />
 
           {/* Separator */}
           {index < reels.length - 1 && (
