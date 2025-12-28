@@ -14,6 +14,7 @@ export default function UserPage() {
   const username = params.username;
 
   const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -51,8 +52,9 @@ export default function UserPage() {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
-        // Set token for feed
+        // Set token and user for feed
         setToken(response.data.token);
+        setUser(response.data.user);
         setLoading(false);
       }
     } catch (err) {
@@ -99,17 +101,35 @@ export default function UserPage() {
       <Header />
 
       {/* User Banner */}
-      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-6">
+      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-8">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h1 className="text-3xl font-bold mb-1">@{username}</h1>
-          <p className="text-white/90">Shared Instagram Reels Feed</p>
-          <div className="mt-3 flex gap-3">
-            <button
-              onClick={() => router.push('/login')}
-              className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-semibold transition-colors backdrop-blur-sm"
-            >
-              Switch User
-            </button>
+          <div className="flex items-center gap-4">
+            {/* Profile Image */}
+            {user?.profileImage ? (
+              <img
+                src={user.profileImage}
+                alt={username}
+                className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
+              />
+            ) : (
+              <div className="w-24 h-24 rounded-full border-4 border-white shadow-lg bg-white/20 backdrop-blur-sm flex items-center justify-center text-4xl font-bold">
+                {username.charAt(0).toUpperCase()}
+              </div>
+            )}
+
+            {/* User Info */}
+            <div className="flex-grow">
+              <h1 className="text-3xl font-bold mb-1">@{username}</h1>
+              <p className="text-white/90">Shared Instagram Reels Feed</p>
+              <div className="mt-3 flex gap-3">
+                <button
+                  onClick={() => router.push('/login')}
+                  className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-semibold transition-colors backdrop-blur-sm"
+                >
+                  Switch User
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
